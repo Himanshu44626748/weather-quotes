@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 const path = require("path");
 const hbs = require("hbs");
+const port = process.env.PORT || 8000;
 
 const cssPath = path.join(__dirname, "../public");
 const partialPath = path.join(__dirname, "../partials");
@@ -24,6 +25,6 @@ app.get("/weather", (req, res) => {
     res.render("weather");
 });
 
-app.listen(8000, () => {
+app.listen(port, () => {
     console.log("listening to the port 8000");
 });
