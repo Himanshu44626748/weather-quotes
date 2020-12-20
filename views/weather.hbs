@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta> http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
     <title>Document</title>
     <link rel="stylesheet" href="css/style.css" type="text/css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Sofia&effect=neon|outline|emboss|shadow-multiple">
@@ -106,7 +105,7 @@
         }
 
         const getWheather = async (city) => {
-            const data = await fetch(`http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=9af02ed858cf50a1ee88c9246e37b078`);
+            const data = await fetch(`https://cors-anywhere.herokuapp.com/http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=9af02ed858cf50a1ee88c9246e37b078`);
             const jsonData = await data.json();
             const t = Math.floor((jsonData.main.temp)-273.15);
             const mn = Math.floor((jsonData.main.temp_min)-273.15);
