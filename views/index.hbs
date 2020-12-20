@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/style.css" type="text/css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&display=swap" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<style>
+    @media only screen and (max-width: 768px)
+    {
+        #myMedia{
+            font-size: 20px;
+        }
+        #myAuthor{
+            font-size: 15px;
+        }
+    }
+</style>
+
+</head>
+<body>
+    {{> header}}
+
+    <div class="container m-auto">
+        <div class="row">
+            <div class="col-sm-6">
+                <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img src="images/slide1.jpg" class="img-fluid mx-auto d-block" style="max-height: 50vh;">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="images/slide3.png" class="img-fluid mx-auto d-block" style="max-height: 50vh;">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="images/slide2.png" class="img-fluid mx-auto d-block" style="max-height: 50vh;">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div  class="col-sm-6 my-auto text-center ">
+                <h2 id="myMedia" class="pt-5" style="font-family: 'Nunito', sans-serif;">Check <span class="text-primary" style="font-family: 'Rubik', sans-serif;"><a href="/weather" style="text-decoration: none;">Weather</a></span> and get some positive <span class="text-primary" style="font-family: 'Rubik', sans-serif;"><a href="/quotes" style="text-decoration: none;">Quotes</a></span></h2>
+                <h5 id="myAuthor">- Himanshu Mishra</h5>
+            </div>
+        </div>
+    </div>
+
+    {{> footer}}
+</div>
+</body>
+</html>

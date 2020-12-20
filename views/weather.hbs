@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/style.css" type="text/css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Sofia&effect=neon|outline|emboss|shadow-multiple">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+<body>
+    {{> header}}
+
+    <div class="container ">
+        <form class="justify-content-center text-dark">
+            <div class="form-row py-3 ">
+                <div class="col-md-5 py-2 ml-auto">
+                    <input id="city" class="text-dark form-control border border-top-0 border-right-0 border-left-0" type="text" name="city" placeholder="Enter City"></input>
+                </div>
+                <div class="col-md-2 py-2 justify-content-center mr-auto">
+                    <button type="button" class="btn btn-primary" id="getweather">Get Weather</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <div style="margin:auto;">
+        <div class="cards" style="margin:auto;">
+            <div class="card-body justify-content-center" style="margin:auto;">
+                 <div class="card-title" style="text-align: center; font-family: "Sofia", sans-serif;">
+                    <h2 id="cityName" class="font-effect-outline" style="text-transform: uppercase;"></h2>
+                    <div id="icon" class="py-4">
+                    
+                    </div>
+                 </div>
+                <div class="card-text" style="text-align: center;">
+                    <h4 id="temp" class="font-weight-bold py-2"></h4>
+                    <h5 id="maxmin" className="font-weight-bold">
+                    
+                    </h5>
+                    <h5 id="description" class="font-weight-bold py-2"></h5>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {{> footer}}
+
+    <script>
+
+        function get_weatherIcons(rangeId){
+
+            if(rangeId >= 200 && rangeId <= 232)
+            {
+                var img = document.createElement("IMG");
+                img.src = "images/thunderstorm.png";
+                img.setAttribute("style", "max-width: 20%; max-height: 20%;");
+                document.getElementById("icon").appendChild(img);
+            }
+            else if(rangeId >= 300 && rangeId <= 321)
+            {
+                var img = document.createElement("IMG");
+                img.src = "images/drizzle.png";
+                img.setAttribute("style", "max-width: 20%; max-height: 20%;");
+                document.getElementById("icon").appendChild(img);
+            }
+            else if(rangeId >= 500 && rangeId <= 531)
+            {
+                var img = document.createElement("IMG");
+                img.src = "images/rain.png";
+                img.setAttribute("style", "max-width: 20%; max-height: 20%;");
+                document.getElementById("icon").appendChild(img);
+            }
+            else if(rangeId >= 600 && rangeId <= 622)
+            {
+                var img = document.createElement("IMG");
+                img.src = "images/snow.png";
+                img.setAttribute("style", "max-width: 20%; max-height: 20%;");
+                document.getElementById("icon").appendChild(img);
+            }
+            else if(rangeId >= 701 && rangeId <= 781)
+            {
+                var img = document.createElement("IMG");
+                img.src = "images/atmosphere.png";
+                img.setAttribute("style", "max-width: 20%; max-height: 20%;");
+                document.getElementById("icon").appendChild(img);
+            }
+            else if(rangeId === 800)
+            {
+                var img = document.createElement("IMG");
+                img.src = "images/clear.png";
+                img.setAttribute("style", "max-width: 20%; max-height: 20%;");
+                document.getElementById("icon").appendChild(img);
+            }
+            else{
+                var img = document.createElement("IMG");
+                img.src = "images/cloud.png";
+                img.setAttribute("style", "max-width: 20%; max-height: 20%;");
+                document.getElementById("icon").appendChild(img);
+            }
+        }
+
+        const getWheather = async (city) => {
+            const data = await fetch(`http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=9af02ed858cf50a1ee88c9246e37b078`);
+            const jsonData = await data.json();
+            const t = Math.floor((jsonData.main.temp)-273.15);
+            const mn = Math.floor((jsonData.main.temp_min)-273.15);
+            const mx = Math.floor((jsonData.main.temp_max)-273.15);
+            document.getElementById("cityName").innerHTML = `${city}, ${jsonData.sys.country}`;
+            document.getElementById("temp").innerHTML = `${t}&deg;`;
+            document.getElementById("maxmin").innerHTML = `${mn}&deg;    ${mx}&deg;`;
+            document.getElementById("description").innerHTML = `${jsonData.weather[0].description}`;
+
+            get_weatherIcons(jsonData.weather[0].id);
+        }
+
+        
+
+        document.getElementById("getweather").addEventListener("click", (e) => {
+            var city = document.getElementById("city").value;
+            var img = document.getElementById("icon");
+            img.removeChild(img.childNodes[0]);
+            getWheather(city);
+            e.preventDefault();
+        })
+
+    </script>
+</body>
+</html>

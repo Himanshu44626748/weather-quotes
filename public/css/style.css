@@ -1,0 +1,38 @@
+body{
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+li{
+    padding-left: 50px;
+    padding-right: 50px;
+}
+.myfooter{
+    margin-top: auto;
+    width: 100%;
+    height: 5rem;
+}
+.mybuttons{
+    line-height: 5rem;
+    text-align: center;
+}
+.copyright{
+    padding-bottom: 0;
+    margin-bottom: 0;
+}
+form input[name="city"],form input[name="country"]{
+    border-bottom: 2px solid !important; 
+    border-color: rgb(71, 70, 70) !important;
+    box-shadow: none !important;
+}
+
+form input[name="city"]:focus{
+    border: none !important;
+    border-bottom: 2px solid !important;
+    border-color:  rgb(71, 70, 70) !important;
+    box-shadow: none !important;
+}
+
+form button[type="submit"]{
+    box-shadow: none !important;
+}
